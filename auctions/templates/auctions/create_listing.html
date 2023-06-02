@@ -1,8 +1,11 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
+<form>
+    {% load crispy_forms_tags %}
     <h2>Create Listing</h2>
-    {{ forms }}
+    {{ forms |crispy }}
+</form>
 
     
 {% endblock %}
