@@ -3,5 +3,15 @@
 {% block body %}
     <h2>Active Listings</h2>
 
-    TODO
+    {% for info in data %}
+    {{ info }}
+
+    {% endfor %}
+    
+    {% for inst in data %}
+    <h5>Product Name</h3>{{ inst.product_name }}
+    <h5>Product Image</h3>{{ inst.product_image }}
+    {{ inst.price_bid }}
+
+    {% endfor %}
 {% endblock %}

@@ -9,7 +9,27 @@ from .forms import ListingForm
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    List = []
+    if request.method == "POST":
+        list = ListingForm(request.POST, request.FILES)
+        if list.is_valid():
+            product_name = list.cleaned_data["product_name"]
+            product_image = list.cleaned_data["product_image"]
+            price_bid = list.cleaned_data["price_bid"]
+            listing = Listing(product_name=product_name, product_image=product_image, price_bid=price_bid)
+            listing.save()
+            List.append(product_name)
+            List.append(product_image)
+            List.append(price_bid)
+            return render(request, "auctions/index.html", {
+                "data": List,
+                "l":listing
+                })
+    else:
+        listings = Listing.objects.all
+        return render(request, "auctions/index.html", {
+            "data": listings
+        })
 
 
 def login_view(request):
@@ -67,6 +87,5 @@ def register(request):
 def create_listing(request):
     L_form = ListingForm
     return render(request, "auctions/create_listing.html", {
-        
         "forms": L_form
     })
