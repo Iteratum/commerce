@@ -14,4 +14,7 @@ class ListingForm(ModelForm):
             'product_description': forms.Textarea(),
             'is_active': forms.CheckboxInput(),
             'price_bid': forms.NumberInput(attrs={'min': 1}),
+            'product_category': forms.Select(attrs={'label': 'Choose category'}, choices=[
+                "Clothing", "Jewelries", "Footwears"
+            ])
         }

@@ -5,20 +5,20 @@ from django.db import models
 class User(AbstractUser):
     pass
 
-
+class Category(models.Model):
+    type = models.CharField(max_length=100, null=True)
+    
+    def __str__(self):
+        return self.type
+    
 
 class Listing(models.Model):
-    category = [
-        ('Cl', 'Clothing'),
-        ('Fn', 'Furnitures'),
-        ('Jw', 'Jewelries')
-    ]
     product_name = models.CharField(max_length=64, verbose_name="product name")
     product_description = models.TextField(max_length=200, verbose_name="product description")
     product_image = models.ImageField(upload_to="images/", verbose_name="image")
     is_active = models.BooleanField(blank=False, default=True)
-    price_bid = models.DecimalField(decimal_places=2, max_digits=6, default=0.00)
-    product_category = models.CharField(verbose_name="Product Category", choices=category, max_length=2)
+    price_bid = models.DecimalField(decimal_places=2, max_digits=6, default=False)
+    product_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")
     
     def __str__(self):
         return self.product_name
@@ -36,6 +36,7 @@ class Comments(models.Model):
 
 
 class Bids(models.Model):
+    bid = models.DecimalField(decimal_places=2, max_digits=6, null=True)
     listing_id = models.ForeignKey(Listing, null=True, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -45,3 +46,7 @@ class Bids(models.Model):
 
 class Watchlist(models.Model):
     listing_id = models.ForeignKey(Listing, default=True, on_delete=models.DO_NOTHING)
+    user_id = models.OneToOneField(User, default=True, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.listing_id
