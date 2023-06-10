@@ -4,29 +4,21 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Listing
+from .models import User, Listing, Category
 from .forms import ListingForm
 
 
 def index(request):
-    if request.method == "POST":
-        list = ListingForm(request.POST, request.FILES)
-        if list.is_valid():
-            product_name = list.cleaned_data["product_name"]
-            product_image = list.cleaned_data["product_image"]
-            price_bid = list.cleaned_data["price_bid"]
-            listing = Listing(product_name=product_name, product_image=product_image, price_bid=price_bid)
-            listing.save()
-            List = Listing.objects.all
-            return render(request, "auctions/index.html", {
-                "data": List,
-                })
-    else:
-        listings = Listing.objects.all
-        return render(request, "auctions/index.html", {
-            "data": listings
-        })
+    listings = Listing.objects.filter(is_active=True)
+    product_ca = Category.objects.all
+    return render(request, "auctions/index.html", {
+        "data": listings,
+        "categ": product_ca
+    })
 
+
+def Categories_view(request):
+    pass
 
 def login_view(request):
     if request.method == "POST":
@@ -81,7 +73,19 @@ def register(request):
 
 
 def create_listing(request):
-    L_form = ListingForm
-    return render(request, "auctions/create_listing.html", {
-        "forms": L_form
-    })
+    if request.method == "POST":
+        list = ListingForm(request.POST, request.FILES)
+        if list.is_valid():
+            product_name = list.cleaned_data["product_name"]
+            product_image = list.cleaned_data["product_image"]
+            price_bid = list.cleaned_data["price_bid"]
+            product_category = list.cleaned_data["product_category"]
+            listing = Listing(product_name=product_name, product_image=product_image, price_bid=price_bid, product_category=product_category)
+            listing.save()
+            List = Listing.objects.all
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        L_form = ListingForm
+        return render(request, "auctions/create_listing.html", {
+            "forms": L_form
+        })
