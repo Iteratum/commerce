@@ -10,15 +10,30 @@ from .forms import ListingForm
 
 def index(request):
     listings = Listing.objects.filter(is_active=True)
-    product_ca = Category.objects.all
+    product_ca = Category.objects.all()
     return render(request, "auctions/index.html", {
         "data": listings,
         "categ": product_ca
     })
 
 
-def Categories_view(request):
-    pass
+def categories_view(request, categorys):
+    if request.method == "POST":
+        category_name = request.POST["categorys"]
+        category = Category.objects.get(type=category_name)
+        listings = Listing.objects.filter(category=category)
+        return render(request, "auctions/Categories_view.html", {
+        "category": listings,
+        "category_name": category_name,
+        "cat": category
+    })
+        
+
+def listing_view(request, id):
+        listing = Listing.objects.get(pk=id)
+        return render(request, "auctions/listing_view.html", {
+            "listing": listing
+        })
 
 def login_view(request):
     if request.method == "POST":
@@ -79,8 +94,8 @@ def create_listing(request):
             product_name = list.cleaned_data["product_name"]
             product_image = list.cleaned_data["product_image"]
             price_bid = list.cleaned_data["price_bid"]
-            product_category = list.cleaned_data["product_category"]
-            listing = Listing(product_name=product_name, product_image=product_image, price_bid=price_bid, product_category=product_category)
+            product_category = list.cleaned_data["category"]
+            listing = Listing(product_name=product_name, product_image=product_image, price_bid=price_bid, category=product_category)
             listing.save()
             List = Listing.objects.all
             return HttpResponseRedirect(reverse("index"))

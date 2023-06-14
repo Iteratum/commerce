@@ -2,22 +2,9 @@
 
 {% block body %}
     <h2>Active Listings</h2>
-    <form method="POST" action="{% url 'categories_view'  %}">
-        {% csrf_token %}
-        <label>Category</label>
-        <select name="categorys">
-            {% for i in categ %}
-            <option value={{ i }}>{{ i }}</option>
-            {% endfor %}
-        </select>
-        <input type="submit" value="search">
-    </form>
-    
-    
-
-    <form>
-    <div class="row mx-3">
-        {% for inst in data %}
+       
+    <div class="row">
+        {% for inst in category %}
             <div class="card mb-3 pb-5 object-fit-contain fluid" style="width: 25rem; height: 16rem;">
                 {% if inst.product_image %}
                 <img class="w-100 h-100 card-img-top" src="{{ inst.product_image.url }}"  alt="{{inst.product_name}}">
@@ -25,14 +12,13 @@
                 
                 <div class="card-body d-flex align-items-center">
                     <strong class="card-title">{{ inst.product_name }}</strong>
+                    
                     <strong class="card-text ml-auto p-2">{{ inst.price_bid }}</strong>
-                    <a href="{% url 'listing_view' id=inst.id %}" class="btn btn-primary">detail</a>
                 </div>
             </div>
     </div>
-        {% empty %}
-        <h3>No listing found</h3>
+    {% empty %}
+    <h3>No listing with category '{{ category_name }}' found</h3>
 
-        {% endfor %}
-    
+    {% endfor %}
 {% endblock %}

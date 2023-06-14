@@ -1,0 +1,15 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+ 
+ 
+     
+      <span class="badge badge-pill badge-warning">{{ listing.category }}</span>
+      <h1>{{listing.product_name }}</h1> 
+      <img  src="{{listing.product_image.url}}" alt="Listing picture">  
+      <p> {{ listing.product_description }} </p>
+      <p id="bid">Current bid: <span id="price">{{ listing.price_bid }}</span></p>
+      
+      
+      
+{% endblock %}

@@ -19,7 +19,7 @@ class Listing(models.Model):
     is_active = models.BooleanField(blank=False, default=True)
     price_bid = models.DecimalField(decimal_places=2, max_digits=6, default=False)
     owner = models.ForeignKey(User, related_name="auction_owner", on_delete=models.CASCADE, default=True)
-    product_category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category")
     
     def __str__(self):
         return self.product_name
