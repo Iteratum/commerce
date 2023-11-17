@@ -1,24 +1,33 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
-       
-    <div class="row">
+
+    <div class="row pt-5">
+        
         {% for inst in category %}
-            <div class="card mb-3 pb-5 object-fit-contain fluid" style="width: 25rem; height: 16rem;">
+
+        <div class=" row-cols-1 row-cols-md-3 g-4 p-5">
+            <h2 class="text-light py-3">Results for '{{ category_name }}'</h2>
+            <div class="col card">
                 {% if inst.product_image %}
-                <img class="w-100 h-100 card-img-top" src="{{ inst.product_image.url }}"  alt="{{inst.product_name}}">
+                <img src="{{ inst.product_image.url }}" class="card-img-top" alt="{{inst.product_name}}">
                 {% endif %}
-                
-                <div class="card-body d-flex align-items-center">
-                    <strong class="card-title">{{ inst.product_name }}</strong>
-                    
-                    <strong class="card-text ml-auto p-2">{{ inst.price_bid }}</strong>
+                <div class="card-body">
+                    <h3 class="card-title">{{inst.product_name}}</h3>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
+                        dignissimos accusantium amet similique velit iste.</p>
+                </div>
+                <div class="mb-2 d-flex justify-content-around">
+                    <h3>{{ inst.initial_price }}</h3>
+                    <a href="{% url 'listing_view' id=inst.id %}"><button class="btn btn-primary mt-3" type="button">View</button></a>
                 </div>
             </div>
-    </div>
-    {% empty %}
-    <h3>No listing with category '{{ category_name }}' found</h3>
+        </div>
+        {% empty %}
+        <h3>No listing with category '{{ category_name }}' found</h3>
 
-    {% endfor %}
+        {% endfor %}
+            
+    </div>
+
 {% endblock %}

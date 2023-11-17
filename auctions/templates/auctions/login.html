@@ -8,17 +8,23 @@
         <div>{{ message }}</div>
     {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
-
+    <div class="container-fluid">
+        <form action="{% url 'login' %}" method="post" id="form" class="mx-auto">
+            {% csrf_token %}
+            <h4 class="text-center">Login</h4>
+            <div class="mb-3 mt-5">
+              <label for="exampleInputUsername1" class="form-label">User Name</label>
+              <input type="text" class="form-control"  name="username" id="exampleInputUsername1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label>Password</label>
+              <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+            </div>
+          
+            <button id="custom-button" type="submit" class="btn mt-5">Login</button>
+            <p>Don't have an account? <a href="{% url 'register' %}">Register here.</a></p>
+          </form>
+          
+    </div>
 {% endblock %}

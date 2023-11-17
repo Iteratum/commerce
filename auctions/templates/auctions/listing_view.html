@@ -1,15 +1,128 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
- 
- 
-     
-      <span class="badge badge-pill badge-warning">{{ listing.category }}</span>
-      <h1>{{listing.product_name }}</h1> 
-      <img  src="{{listing.product_image.url}}" alt="Listing picture">  
-      <p> {{ listing.product_description }} </p>
-      <p id="bid">Current bid: <span id="price">{{ listing.price_bid }}</span></p>
-      
-      
-      
+
+{% load static %}
+
+
+<section>
+    <div class="detail-container flex">
+        <div class="left">
+            <div class="main_image">
+                <img src = {% static "images/download.jpg" %} class="slide">
+            </div>
+            <div class="option flex">
+                <div><img src = {% static "images/images (1).jpg" %}></div>
+                <div><img src = {% static "images/images (2).jpg" %}></div>
+                <div><img src = {% static "images/images (3).jpg" %}></div>
+                <div><img src = {% static "images/images.jpg" %}></div>
+                <div><img src = {% static "images/download.jpg" %}></div>
+            </div>
+        </div>
+        <div class="right">
+            <h3>{{ listing.product_name }}</h3>
+            <h4>${{ price }}</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+            <div class="btn-groups">
+                {% if listing in watchlist_items %}
+                <a href="{% url 'remove_from_watchlist' item_id=listing.id %}" class="fas fa-shopping-cart"><button type = "button" class = "add-cart-btn">remove from watchlist</button></a>
+                {% else %}
+                <a href="{% url 'add_to_watchlist' item_id=listing.id %}" class="fas fa-shopping-cart"><button type = "button" class = "add-cart-btn">add to watchlist</button></a>
+                {% endif %}
+            </div>
+            <form method="POST" {% url "place_bid" %}>
+                {% csrf_token %}
+                <div class="btn-groups">
+                    <input type="number" id="bid-value" min=0 name="bid_value">
+                    <input type="hidden" id="listing-id" name="item_id" value="{{ listing.id }}">
+                    <button type="submit" id="bidbutton" class="buy-now-btn">Place bid</button>
+                    <div id="response-container">{{ message }}</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+function img(anything) {
+    document.querySelector('.slide').src = anything;
+}
+
+function change(change) {
+    const line = document.querySelector('.home');
+    line.style.background = change;
+}
+
+var form = document.getElementById("formId")
+function FormSubmit(event) {
+    event.preventDefault();
+}
+form.addEventListener('submit', FormSubmit)
+
+document.addEventListener("DOMContentLoaded", function() {
+    var bidButton = document.getElementById("bid-button")
+
+    bidButton.addEventListener("click", function(event) {
+        event.preventDefault();
+        let bidValue = parseFloat(document.getElementById("bid-value").value)
+        let itemId = parseFloat(document.getElementById("listing-id").value)
+
+        //Send xhr request
+        let xhr = newXMLHttpRequest()
+        xhr.open("POST", "{% url "place_bid" %}", true)
+
+        xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"))
+
+        xhr.setRequestHeader("Content-Type", "application/json")
+        
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                let response = JSON.parse(xhr.responseText)
+
+                var message = response.message
+                var rescon = document.getElementById("response-container")
+                rescon.innerHTML = message
+            }
+        }
+        let data = JSON.stringify({
+            "bid_value": bidValue, "item_id": itemId
+        })
+       
+        xhr.send(data)
+        
+    })
+})
+
+//Function to get csrftoken
+function getCookie(name) {
+    var cookieValue = null
+    if(document.cookie && document.cookie !== "") {
+        var cookies = document.cookie.split(";")
+        var cookielength = cookies.length()
+        for (var i = 0, i <= cookielength; i++) {
+            var cookie = cookies[i].trim()
+
+            if(cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+                break;
+            }
+        }
+    }
+}
+</script>
+
 {% endblock %}
+
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+      </div>
+    </div>
+</div>

@@ -11,12 +11,12 @@ class ListingForm(ModelForm):
             ]
         
         model = Listing
-        fields = ('product_name', 'product_description', 'product_image', 'is_active', 'price_bid', 'category')
+        fields = ('product_name', 'product_description', 'product_image', 'is_active', 'initial_price', 'category')
         
         widgets = {
             'product_name': forms.TextInput(),
             'product_description': forms.Textarea(),
             'is_active': forms.CheckboxInput(),
-            'price_bid': forms.NumberInput(attrs={'min': 1}),
+            'initial_price': forms.NumberInput(attrs={'min': 1}),
             'category': forms.Select(attrs={'label': 'Choose category'}, choices=cat)
         }

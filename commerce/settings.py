@@ -38,10 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_bootstrap5",
     'crispy_forms',
     'crispy_bootstrap4',
-    'tailwind',
-    'auction',
     'django_browser_reload'
 ]
 
