@@ -5,10 +5,33 @@
 <div class="container-fluid">
     <form method="POST" action="{% url 'create_listing' %}" enctype="multipart/form-data" id="form">
         {% csrf_token %}
-        {% load crispy_forms_tags %}
-        <h2>Create Listing</h2>
-        {{ forms |crispy }}
-        <input type="submit" value="Create Listing" class="btn btn-primary">
+        <h4 class="text-center">Create Listing</h4>
+        <div class="mb-3 mt-5">
+          <p for="exampleInputUsername1" class="form-label">Name</p>
+          <input type="text" class="form-control" required  name="title" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <p for="exampleInputemail1" class="form-label">Opening bid</p>
+            <input type="number" min=1 class="form-control" required name="starting_bid" >
+        </div>
+        <div class="mb-3">
+            <p for="exampleInputemail1" class="form-label">Description</p>
+            <input type="text"class="form-control" required name="description" >
+        </div>
+        <div class="mb-3">
+            <p for="exampleInputPassword1" class="form-label">Category</p>
+            <select type="select" class="form-control" name="category" >
+                {% for option in options %}
+                    <option class="dropdown-item" required value={{ option }}>{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <p for="exampleInputconfirmation1" class="form-label">Image</p>
+            <input type="file" class="form-control" required name="image" multiple>
+        </div>
+      
+        <button id="custom-button" type="submit" class="btn mt-5">Create</button>
     </form>
 </div>
 

@@ -2,22 +2,21 @@
 
 {% block body %}
 
-<div class="row pt-5">
+<div class="row mt-5 p-5">
     {% for watchlist_item in watchlist_items %}
 
     <div class="row-cols-1 row-cols-md-3 g-4 p-5">
         <div class="col card">
-            {% if watchlist_item.product_image %}
-            <img src="{{ watchlist_item.product_image.url }}" class="card-img-top" alt="{{watchlist_item.product_name}}">
+            {% if watchlist_item.image %}
+            <img src="{{ watchlist_item.image.url }}" class="card-img-top" alt="{{watchlist_item.title}}">
             {% endif %}
             <div class="card-body">
-                <h3 class="card-title">{{watchlist_item.product_name}}</h3>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-                    dignissimos accusantium amet similique velit iste.</p>
+                <h3 class="card-title">{{watchlist_item.title}}</h3>
+                <p class="card-text">{{watchlist_item.description}}</p>
             </div>
             <div class="mb-2 d-flex justify-content-around">
-                <h3>{{ watchlist_item.initial_price }}</h3>
-                <a href="{% url 'listing_view' id=watchlist_item.id %}"><button class="btn btn-primary mt-3" type="button">View</button></a>
+                <h3>{% if watchlist_item %}{{ watchlist_item.current_bid }}{% else %} {{ watchlist_item.starting_bid }} {% endif %}</h3>
+                <a href="{% url 'listing_detail' id=watchlist_item.id %}"><button class="btn btn-primary mt-3" type="button">View</button></a>
             </div>
         </div>
     </div>

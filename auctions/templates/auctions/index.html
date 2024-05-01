@@ -2,86 +2,70 @@
 
 {% block body %}
 
-<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#hero-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
 
-    <div class="carousel-inner">
-        <div class="carousel-item active c-item">
-            <img src="https://media.istockphoto.com/id/1249219777/photo/shopping-online-concept-parcel-or-paper-cartons-with-a-shopping-cart-logo-in-a-trolley-on-a.jpg?s=612x612&w=0&k=20&c=EWKEahyVLY8iAHyirCCDESHRGW37lqUJ7In0SssNSLE=" class="d-block w-100 c-img" alt="Slide 1">
-            <div class="carousel-caption top-0 mt-4">
-                <p class="mt-5 fs-3 text-uppercase">Discover the hidden world</p>
-                <h1 class="display-1 fw-bolder text-capitalize">The Aurora Tours</h1>
-                <button id="custom-button" class="btn px-4 py-2 fs-10 mt-5">Start Auction</button>
+        <div class="carousel-inner">
+            <div class="carousel-item active c-item">
+                <img src="https://media.istockphoto.com/id/1249219777/photo/shopping-online-concept-parcel-or-paper-cartons-with-a-shopping-cart-logo-in-a-trolley-on-a.jpg?s=612x612&w=0&k=20&c=EWKEahyVLY8iAHyirCCDESHRGW37lqUJ7In0SssNSLE=" class="d-block w-100 c-img" alt="Slide 1">
+                <div class="carousel-caption top-0 mt-4">
+                    <p class="mt-5 fs-3 text-uppercase">Discover the hidden world</p>
+                    <h1 class="display-1 fw-bolder text-capitalize">The Aurora Tours</h1>
+                    <button id="custom-button" class="btn px-4 py-2 fs-10 mt-5">Start Auction</button>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="https://media.istockphoto.com/id/1326805419/photo/clothes-a-hanger-surrounding-by-bag-and-market-prop-with-geometric-shape-on-the-floor-in.jpg?s=612x612&w=0&k=20&c=nnBTlrUbe2BtVJap4eoyQkS-9mP2Sy9WQBDf0G8zr80=" class="d-block w-100 c-img" alt="Slide 2">
+                <div class="carousel-caption top-0 mt-4">
+                    <p class="text-uppercase fs-3 mt-5">The season has arrived</p>
+                    <p class="display-1 fw-bolder text-capitalize">3 available tours</p>
+                    <button id="custom-button" class="btn px-4 py-2 fs-10 mt-5" data-bs-toggle="modal"
+                        data-bs-target="#booking-modal">Start Auction</button>
+                </div>
+            </div>
+            <div class="carousel-item c-item">
+                <img src="https://media.istockphoto.com/id/1307568521/photo/its-the-denim-that-does-it-for-me.jpg?s=612x612&w=0&k=20&c=0RQfpn8VJxXl6sO4aUehTsPvyYKGPwVwz1EdJRBU_Nw=" class="d-block w-100 c-img" alt="Slide 3">
+                <div class="carousel-caption top-0 mt-4">
+                    <p class="text-uppercase fs-3 mt-5">Destination activities</p>
+                    <p class="display-1 fw-bolder text-capitalize">Go glacier hiking</p>
+                    <button id="custom-button" class="btn px-4 py-2 fs-10 mt-5" data-bs-toggle="modal"
+                        data-bs-target="#booking-modal">Start Auction</button>
+                </div>
             </div>
         </div>
-        <div class="carousel-item c-item">
-            <img src="https://media.istockphoto.com/id/1326805419/photo/clothes-a-hanger-surrounding-by-bag-and-market-prop-with-geometric-shape-on-the-floor-in.jpg?s=612x612&w=0&k=20&c=nnBTlrUbe2BtVJap4eoyQkS-9mP2Sy9WQBDf0G8zr80=" class="d-block w-100 c-img" alt="Slide 2">
-            <div class="carousel-caption top-0 mt-4">
-                <p class="text-uppercase fs-3 mt-5">The season has arrived</p>
-                <p class="display-1 fw-bolder text-capitalize">3 available tours</p>
-                <button id="custom-button" class="btn px-4 py-2 fs-10 mt-5" data-bs-toggle="modal"
-                    data-bs-target="#booking-modal">Start Auction</button>
-            </div>
-        </div>
-        <div class="carousel-item c-item">
-            <img src="https://media.istockphoto.com/id/1307568521/photo/its-the-denim-that-does-it-for-me.jpg?s=612x612&w=0&k=20&c=0RQfpn8VJxXl6sO4aUehTsPvyYKGPwVwz1EdJRBU_Nw=" class="d-block w-100 c-img" alt="Slide 3">
-            <div class="carousel-caption top-0 mt-4">
-                <p class="text-uppercase fs-3 mt-5">Destination activities</p>
-                <p class="display-1 fw-bolder text-capitalize">Go glacier hiking</p>
-                <button id="custom-button" class="btn px-4 py-2 fs-10 mt-5" data-bs-toggle="modal"
-                    data-bs-target="#booking-modal">Start Auction</button>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#hero-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#hero-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div> 
 
-    <div class="dropdown">
-        <form method="POST" action="{% url 'categories_view'  %}" class="bg-transparent d-flex">
-            {% csrf_token %}
-            <div>
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Category
-                  </button>
-                <select class="dropdown-menu dropdown-menu-dark" name="categorys">
-                    {% for i in categ %}
-                    <option class="dropdown-item" value={{ i }}>{{ i }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <input class="btn btn-primary" type="submit" value="search">
-        </form>
+    <div>
+        <a href="{% url 'category' %}"><button class="btn btn-primary mt-3" type="button">Category</button></a>
     </div>
-    
-    
 
-    <div class="row row-cols-1 row-cols-md-3 g-4 p-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-5" id="doc">
         {% for inst in data %}
 
         <div class="col">
             <div class="card">
                 {% if inst.product_image %}
-                <img src="{{ inst.product_image.url }}" class="card-img-top" alt="{{inst.product_name}}">
+                <img src="{{ inst.product_image.url }}" class="card-img-top" alt="{{inst.title}}">
                 {% endif %}
                 <div class="card-body">
-                    <h3 class="card-title">{{inst.product_name}}</h3>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-                        dignissimos accusantium amet similique velit iste.</p>
+                    <h3 class="card-title">{{inst.title}}</h3>
+                    <p class="card-text">{{inst.description}}</p>
                 </div>
                 <div class="mb-2 d-flex justify-content-around">
-                    <h3>{{ inst.initial_price }}</h3>
-                    <a href="{% url 'listing_view' id=inst.id %}"><button class="btn btn-primary mt-3" type="button">View</button></a>
+                    <h3>{% if inst %}{{ inst.current_bid }}{% else %} {{ inst.starting_bid }} {% endif %}</h3>
+                    <a href="{% url 'listing_detail' id=inst.id %}"><button class="btn btn-primary mt-3" type="button">View</button></a>
                 </div>
             </div>
         </div>
@@ -91,5 +75,15 @@
         {% endfor %}
             
     </div>
+
+<script>
+    const cards = document.getElementById('doc')
+    const AucButton = document.querySelector("#custom-button")
+    AucButton.addEventListener('click', Scroll)
+    
+    function Scroll() {
+        cards.scrollIntoView()
+    }
+</script>
        
 {% endblock %}

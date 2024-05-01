@@ -4,9 +4,7 @@
 
     <h2>Login</h2>
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
+    
 
 
     <div class="container-fluid">
@@ -14,15 +12,16 @@
             {% csrf_token %}
             <h4 class="text-center">Login</h4>
             <div class="mb-3 mt-5">
-              <label for="exampleInputUsername1" class="form-label">User Name</label>
+              <p for="exampleInputUsername1" class="form-label">Username</p>
               <input type="text" class="form-control"  name="username" id="exampleInputUsername1" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
-              <label>Password</label>
+              <p class="form-label">Password</p>
               <input type="password" class="form-control" name="password" id="exampleInputPassword1">
             </div>
           
             <button id="custom-button" type="submit" class="btn mt-5">Login</button>
+            <p class="text-danger">{{ message }}</p>
             <p>Don't have an account? <a href="{% url 'register' %}">Register here.</a></p>
           </form>
           
