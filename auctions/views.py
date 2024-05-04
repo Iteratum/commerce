@@ -51,13 +51,14 @@ def listing_detail(request, id):
         "creator": creator
     })
 
-
+@login_required
 def add_to_watchlist(request, item_id):
     item = get_object_or_404(Listing, pk=item_id)
     user_watchlist, created = Watchlist.objects.get_or_create(user=request.user)
     user_watchlist.items.add(item)
     return redirect("watchlist")
 
+@login_required
 def remove_from_watchlist(request, item_id):
     item = get_object_or_404(Listing, pk=item_id)
     current_user = request.user
@@ -79,6 +80,7 @@ def category(request):
             "lists": category_options
         })
 
+@login_required
 def create_listing(request):
     category_options = Category.objects.all()
     if request.method == "POST" and "FILES":
