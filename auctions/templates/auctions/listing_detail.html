@@ -45,7 +45,7 @@
                     <form method="POST" action="{% url "place_bid" %}">
                         {% csrf_token %}
                         <div class="btn-groups">
-                            <input type="number" id="bid-value" min=0.00 name="amount">
+                            <input type="number" id="bid-value" step="0.00" name="amount">
                             <input type="hidden" id="listing-id" name="item_id" value="{{ listing.id }}">
                             <button type="submit" id="bidbutton" class="buy-now-btn">Place bid</button>
                             <div id="response-container">{{ message }}</div>
